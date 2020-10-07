@@ -29,13 +29,13 @@ class App {
     
     public App(){
         BookSaver saver = new BookSaver();
-        books = saver.loadFile();
+       books = saver.loadFile();
         
         ReaderSaver rsaver = new ReaderSaver();
         readers = rsaver.loadFile();
         
         HistorySaver hsaver = new HistorySaver();
-        histories = hsaver.loadFile();
+        //histories = hsaver.loadFile();
     }
     
     public void run(){
@@ -51,6 +51,7 @@ class App {
             
             System.out.println("5. Выдать книгу читателю");
             System.out.println("6. Вернуть книгу в библиотеку");
+            System.out.println("7. Журнал");
             System.out.print("Выберите задачу: ");
             Scanner scanner = new Scanner(System.in);
             String task = scanner.nextLine();
@@ -162,18 +163,32 @@ class App {
                     }
                     break;
                 case "6":
-                    System.out.println("");
+                    System.out.println("--- Cписок книг ---");
+                    for (int j = 0; j < histories.length; j++) {
+                        if(histories[j]!= null && histories[j].getReturnDate() == null){
+                            System.out.printf("%3d. Название книги: %s%n"
+                                    ,j+1
+                                    ,histories[j].getBook().toString()
+                                    
+                            );
+                            System.out.println("--------------------------------");
+                            
+                        }
+                    }
+                    System.out.println("Выберете книгу: ");
+                    int bNumber = scanner.nextInt();
+                    histories[bNumber-1] = null;
                     break;
                 case "7":
-                    System.out.println("--- Cписок книг ---");
-                    for (int l = 0; l < histories.length; l++) {
-                        if(histories[l]!= null){
+                    System.out.println("--- Журнал ---");
+                    for (int j = 0; j < histories.length; j++) {
+                        if(histories[j] != null && histories[j].getReturnDate() == null){
                             System.out.printf("%3d. Читатель: %s%nНазвание книги: %s%nНачальная дата: %s%n Конечная дата: %s%n "
-                                    ,l+1
-                                    ,histories[l].getReader().toString()
-                                    ,histories[l].getBook().toString()
-                                    ,histories[l].getTakeOnDate()
-                                    ,histories[l].getReturnDate()
+                                    ,j+1
+                                    ,histories[j].getReader().getName()
+                                    ,histories[j].getBook().getName()
+                                    ,histories[j].getTakeOnDate()
+                                    ,histories[j].getReturnDate()
                             );
                             System.out.println("--------------------------------");
                             
