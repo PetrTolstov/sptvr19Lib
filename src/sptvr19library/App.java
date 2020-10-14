@@ -6,19 +6,22 @@
 package sptvr19library;
 
 
+import tools.manager.SecureManager;
 import tools.manager.HistoryManager;
 import entity.Reader;
 import entity.Book;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
-import tools.BookFactory;
 import tools.savers.BookSaver;
 import entity.History;
+import entity.User;
 import tools.savers.HistorySaver;
+
 import tools.manager.ReaderManager;
 import tools.savers.ReaderSaver;
 import tools.manager.BookManager;
+import tools.savers.UserSaver;
 /**
  *
  * @author sillamae kutsekool
@@ -27,21 +30,34 @@ class App {
     private Book[] books = new Book[100];
     private Reader[] readers = new Reader[100];
     private History[] histories = new History[100];
+    private  User[] users = new User[100];
+    private SecureManager securiteManager = new SecureManager();
     ReaderManager readerManager = new ReaderManager();
     HistoryManager hMan = new HistoryManager();
 
+    private User loginUser;
+    
+    
     public App(){
         BookSaver saver = new BookSaver();
        books = saver.loadFile();
         
         ReaderSaver rsaver = new ReaderSaver();
-        readers = rsaver.loadFile();
+        //readers = rsaver.loadFile();
         
         HistorySaver hsaver = new HistorySaver();
         //histories = hsaver.loadFile();
+        
+        UserSaver usaver = new UserSaver(); 
+        users = usaver.loadFile();
     }
     
     public void run(){
+        this.loginUser = securiteManager.checkTask(users);
+       
+        UserSaver usaver = new UserSaver();
+        
+        usaver.saveUser(users);
         System.out.println("--- Библиотека ---");
         boolean repeat = true;
         do{
