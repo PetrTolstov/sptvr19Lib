@@ -13,21 +13,5 @@ import java.util.Scanner;
  * @author user
  */
 public class BookFactory {
-    public Book createBook(){
-        Book book = new Book();
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.println("Создание книги");
-        
-        System.out.println("Введите автора:");
-        book.setAuthor(scanner.nextLine());
-        
-        System.out.println("Введите название:");
-        book.setName(scanner.nextLine());
-        
-        
-        System.out.println("Введите год:");
-        book.setPublishedYear(scanner.nextInt());
-        return book;
-    }
+    
 }
