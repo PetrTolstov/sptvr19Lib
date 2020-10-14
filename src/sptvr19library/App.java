@@ -6,18 +6,19 @@
 package sptvr19library;
 
 
+import tools.manager.HistoryManager;
 import entity.Reader;
 import entity.Book;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import tools.BookFactory;
-import tools.BookSaver;
-import tools.History;
-import tools.HistorySaver;
-import tools.ReaderManager;
-import tools.ReaderSaver;
-import tools.BookManager;
+import tools.savers.BookSaver;
+import entity.History;
+import tools.savers.HistorySaver;
+import tools.manager.ReaderManager;
+import tools.savers.ReaderSaver;
+import tools.manager.BookManager;
 /**
  *
  * @author sillamae kutsekool
@@ -131,7 +132,7 @@ class App {
                     System.out.println("--- Журнал ---");
                     
                     hMan.printListHistory(histories);
-                    
+              
                     break;
                 default:
                     System.out.println("Нет такой задачи.");

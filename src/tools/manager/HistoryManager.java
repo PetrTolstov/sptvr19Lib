@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sptvr19library;
+package tools.manager;
 
-import tools.History;
-import tools.HistorySaver;
+import entity.History;
+import entity.History;
+import entity.History;
+import tools.savers.HistorySaver;
+import tools.savers.HistorySaver;
 
 /**
  *
  * @author user
  */
-class HistoryManager {
+public class HistoryManager {
 
-    void saveHistory(History history, History[] histories) {
+    public void saveHistory(History history, History[] histories) {
         for(int h = 0; h < histories.length; h++){
                         if(histories[h] == null){
                             histories [h] = history;
@@ -26,7 +29,7 @@ class HistoryManager {
                     }
     }
 
-    void printListHistory(History[] histories) {
+    public void printListHistory(History[] histories) {
         for (int j = 0; j < histories.length; j++) {
                         if(histories[j] != null && histories[j].getReturnDate() == null){
                             System.out.printf("%3d. Читатель: %s%nНазвание книги: %s%nНачальная дата: %s%n Конечная дата: %s%n "
